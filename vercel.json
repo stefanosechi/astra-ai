@@ -1,8 +1,14 @@
 {
+  "name": "astra-ai-landing-page-v2",
   "build": {
     "env": {
       "PNPM_INSTALL_FLAGS": "--no-frozen-lockfile",
-      "PNPM_ALLOW_SCRIPTS": "@clerk/shared"
-    }
+      "NODE_ENV": "development",
+      "NPM_INSTALL_FLAGS": "--no-audit --no-fund",
+      "YARN_INSTALL_FLAGS": "--ignore-engines",
+      "BUN_INSTALL_FLAGS": "--no-cache",
+      "NPM_FLAGS": "--legacy-peer-deps"
+    },
+    "installCommand": "if [ -f pnpm-lock.yaml ]; then pnpm install --no-frozen-lockfile || pnpm install --lockfile-only && pnpm install; elif [ -f package-lock.json ]; then npm install $NPM_INSTALL_FLAGS; elif [ -f yarn.lock ]; then yarn install $YARN_INSTALL_FLAGS; elif [ -f bun.lockb ]; then bun install $BUN_INSTALL_FLAGS; else echo 'No lockfile found'; fi"
   }
 }
